@@ -34,7 +34,7 @@ class TasksListViewController: UIViewController, UITableViewDataSource, UITableV
         if let dueDate = selectedTask.dueDate {
             taskCell.dueDateLabel.text = formatDate(dueDate)
         } else {
-            taskCell.dueDateLabel.text = " "
+            taskCell.dueDateLabel.text = ""
         }
         
         return taskCell
@@ -44,10 +44,51 @@ class TasksListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+   
     
-
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let selectedTask = taskArray[indexPath.row]
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            taskArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+     
+        }
+        let completeOrIncomplete = UITableViewRowAction(style: .normal, title: "Change Completion Status") { _,_ in
+            if
+                selectedTask.completed == true {
+                selectedTask.completed = false
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            } else {
+                selectedTask.completed = true
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+            
+            
+        }
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit Task") { _, _ in
+            self.selectedTask = taskArray[indexPath.row]
+            self.performSegue(withIdentifier: "EditTask", sender: self)
+        }
+        editAction.backgroundColor = UIColor.orange
+        completeOrIncomplete.backgroundColor = UIColor.blue
+        return [deleteAction, completeOrIncomplete, editAction]
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? EditTaskViewController {
+            
+            destination.taskEdit = selectedTask
+           
+            
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        
 
         // Do any additional setup after loading the view.
     }

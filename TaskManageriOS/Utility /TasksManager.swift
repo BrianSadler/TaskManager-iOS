@@ -8,9 +8,18 @@
 
 import Foundation
 
+
 class TasksManager {
     
     static let sharedInstance = TasksManager()
     
 }
-let taskArray:[Tasks] = []
+var filePath: String {
+    let manager = FileManager.default
+    let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+    return (url?.appendingPathComponent("Tasks").path)!
+}
+
+
+
+var taskArray:[Tasks] = [Tasks.init(title: "Do homework", taskDescription: "Lots of math homework", dueDate: Date.init() )]

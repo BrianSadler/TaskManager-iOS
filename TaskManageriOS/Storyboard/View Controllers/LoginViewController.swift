@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         self.present(passError, animated: true, completion: nil)
     }
     
-   
+
     @IBAction func signInButtonTapped(_ sender: Any) {
         let userName = userNameTextBox.text
         let password = passwordTextBox.text
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         if userName == userNameStored {
             if password == passwordStored {
-                print("nice")
+                self.performSegue(withIdentifier: "TasksListSegue", sender: self)
             }
             else{
                 

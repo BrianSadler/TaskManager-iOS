@@ -9,17 +9,20 @@
 import Foundation
 
 
-class Tasks {
+class Tasks{
     var title: String
-    var description: String
+    var taskDescription: String
     var completed = false
     var dueDate: Date?
     
-    init(title:String, description: String, dueDate: Date?){
+    init(title:String, taskDescription: String, dueDate: Date?){
         self.title = title
-        self.description = description
+        self.taskDescription = taskDescription
         self.dueDate = dueDate
+        
     }
+    
     }
+
 
 
