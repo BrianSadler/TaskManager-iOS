@@ -15,6 +15,7 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var editTaskDescription: UITextView!
     @IBOutlet weak var editDatePicker: UIDatePicker!
     
+    //Instance of the task to be edited
     var taskEdit: Tasks!
     
     @IBAction func editTaskButtonTapped(_ sender: Any) {
@@ -30,6 +31,7 @@ class EditTaskViewController: UIViewController {
         
         
     }
+    //errors for when fields are not filled out
     func error() {
         let errorAlert = UIAlertController(title: "Error", message: "All Fields not filled out. Please fill out all of the fields.", preferredStyle: .alert)
         

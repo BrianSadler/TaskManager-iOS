@@ -10,8 +10,10 @@ import UIKit
 
 class TasksListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //instance of Tas
     var selectedTask: Tasks!
     
+    //makes the table view populate with number of tasks in the array 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return taskArray.count
     }
